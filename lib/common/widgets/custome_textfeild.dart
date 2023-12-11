@@ -41,23 +41,23 @@ class CustomeTextFiled extends StatelessWidget {
               prefixIcon: prefixIcon,
               prefixIconColor: AppConstants.appDark,
               hintStyle: hintStyle,
-              errorBorder: OutlineInputBorder(
+              errorBorder: const OutlineInputBorder(
                   borderRadius: BorderRadius.zero,
                   borderSide:
                       BorderSide(color: AppConstants.appRed, width: 0.5)),
-              focusedErrorBorder: OutlineInputBorder(
+              focusedErrorBorder: const OutlineInputBorder(
                   borderRadius: BorderRadius.zero,
                   borderSide:
                       BorderSide(color: AppConstants.appRed, width: 0.5)),
-              enabledBorder: OutlineInputBorder(
+              enabledBorder: const OutlineInputBorder(
                   borderRadius: BorderRadius.zero,
                   borderSide:
                       BorderSide(color: AppConstants.appDark, width: 0.5)),
-              focusedBorder: OutlineInputBorder(
+              focusedBorder: const OutlineInputBorder(
                   borderRadius: BorderRadius.zero,
                   borderSide:
                       BorderSide(color: Colors.transparent, width: 0.5)),
-              disabledBorder: OutlineInputBorder(
+              disabledBorder: const OutlineInputBorder(
                   borderRadius: BorderRadius.zero,
                   borderSide:
                       BorderSide(color: AppConstants.appGrayDark, width: 0.5))),

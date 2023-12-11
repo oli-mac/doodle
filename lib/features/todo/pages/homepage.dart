@@ -3,6 +3,7 @@ import 'package:doodle/common/widgets/appstyle.dart';
 import 'package:doodle/common/widgets/custome_textfeild.dart';
 import 'package:doodle/common/widgets/height_spacer.dart';
 import 'package:doodle/common/widgets/reusable_text.dart';
+import 'package:doodle/common/widgets/width_spacer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
@@ -15,8 +16,13 @@ class HomePage extends ConsumerStatefulWidget {
   ConsumerState<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends ConsumerState<HomePage> {
+class _HomePageState extends ConsumerState<HomePage>
+    with TickerProviderStateMixin {
   final TextEditingController search = TextEditingController();
+
+  late final TabController _tabController =
+      TabController(length: 2, vsync: this);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,7 +65,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                         16, AppConstants.appGrayLight, FontWeight.normal),
                     controller: search,
                     prefixIcon: Container(
-                      padding: EdgeInsets.all(14),
+                      padding: const EdgeInsets.all(14),
                       child: GestureDetector(
                         child: const Icon(
                           AntDesign.search1,
@@ -76,10 +82,90 @@ class _HomePageState extends ConsumerState<HomePage> {
                 ],
               ),
             )),
-        body: Center(
-          child: ReusableText(
-              text: 'Todo',
-              style: appstyle(26, AppConstants.appLight, FontWeight.w600)),
-        ));
+        body: SafeArea(
+            child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20.w),
+          child: ListView(children: [
+            const HeightSpacer(height: 25),
+            Row(
+              children: [
+                const Icon(
+                  FontAwesome.tasks,
+                  color: AppConstants.appLight,
+                  size: 20,
+                ),
+                const WidthSpacer(width: 10),
+                ReusableText(
+                    text: "Today's tasks",
+                    style: appstyle(18, AppConstants.appLight, FontWeight.bold))
+              ],
+            ),
+            const HeightSpacer(height: 25),
+            Container(
+              decoration: BoxDecoration(
+                  color: AppConstants.appLight,
+                  borderRadius: BorderRadius.all(
+                      Radius.circular(AppConstants.appRadius))),
+              child: TabBar(
+                indicatorSize: TabBarIndicatorSize.label,
+                indicator: BoxDecoration(
+                    color: AppConstants.appDark,
+                    borderRadius: BorderRadius.all(
+                        Radius.circular(AppConstants.appRadius))),
+                labelPadding: EdgeInsets.zero,
+                isScrollable: false,
+                controller: _tabController,
+                labelColor: AppConstants.appBluelight,
+                labelStyle:
+                    appstyle(24, AppConstants.appBluelight, FontWeight.w700),
+                unselectedLabelColor: AppConstants.appLight,
+                tabs: [
+                  Tab(
+                    child: SizedBox(
+                      width: AppConstants.appWidth * 0.5,
+                      child: Center(
+                        child: ReusableText(
+                            text: 'Pending',
+                            style: appstyle(16, AppConstants.appGrayLight,
+                                FontWeight.bold)),
+                      ),
+                    ),
+                  ),
+                  Tab(
+                    child: Container(
+                      padding: EdgeInsets.only(left: 30.w),
+                      width: AppConstants.appWidth * 0.5,
+                      child: Center(
+                        child: ReusableText(
+                            text: 'Completed',
+                            style: appstyle(16, AppConstants.appGrayLight,
+                                FontWeight.bold)),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const HeightSpacer(height: 25),
+            SizedBox(
+              height: AppConstants.appHeight * 0.3,
+              width: AppConstants.appWidth,
+              child: ClipRRect(
+                borderRadius:
+                    BorderRadius.all(Radius.circular(AppConstants.appRadius)),
+                child: TabBarView(controller: _tabController, children: [
+                  Container(
+                    color: AppConstants.appGrayLight,
+                    height: AppConstants.appHeight * 0.3,
+                  ),
+                  Container(
+                    color: AppConstants.appBkLight,
+                    height: AppConstants.appHeight * 0.3,
+                  ),
+                ]),
+              ),
+            )
+          ]),
+        )));
   }
 }
