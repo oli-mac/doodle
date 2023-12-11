@@ -1,5 +1,6 @@
 import 'package:doodle/common/utils/constants.dart';
 import 'package:doodle/features/onboarding/pages/onboarding.dart';
+import 'package:doodle/features/todo/pages/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
               useMaterial3: true,
             ),
             themeMode: ThemeMode.dark,
-            home: const OnBoarding(),
+            home: const HomePage(),
           );
         });
   }
