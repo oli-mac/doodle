@@ -41,8 +41,8 @@ class _OnBoardingState extends State<OnBoarding> {
             controller: pageController,
             children: const [
               PageOne(),
-              // PageTwo(),
-              PageThree(),
+              PageTwo(),
+              // PageThree(),
             ],
           ),
           Align(
