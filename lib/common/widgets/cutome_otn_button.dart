@@ -10,12 +10,14 @@ class CustomOtnButton extends StatelessWidget {
       this.height,
       this.width,
       required this.colors,
-      required this.text});
+      required this.text,
+      this.color2});
 
   final Function()? onTap;
   final double? height;
   final double? width;
   final Color colors;
+  final Color? color2;
   final String text;
 
   @override
@@ -26,7 +28,7 @@ class CustomOtnButton extends StatelessWidget {
           height: height,
           width: width,
           decoration: BoxDecoration(
-            color: AppConstants.appBKGray,
+            color: color2,
             borderRadius: BorderRadius.all(Radius.circular(12)),
             border: Border.all(color: colors, width: 1),
           ),
