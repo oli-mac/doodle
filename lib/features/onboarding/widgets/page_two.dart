@@ -2,6 +2,7 @@ import 'package:doodle/common/utils/constants.dart';
 import 'package:doodle/common/widgets/appstyle.dart';
 import 'package:doodle/common/widgets/cutome_otn_button.dart';
 import 'package:doodle/common/widgets/height_spacer.dart';
+import 'package:doodle/features/auth/pages/login.dart';
 import 'package:doodle/features/todo/pages/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -26,7 +27,7 @@ class PageTwo extends StatelessWidget {
             CustomOtnButton(
                 onTap: () {
                   Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: ((context) => HomePage())));
+                      MaterialPageRoute(builder: ((context) => Login())));
                 },
                 width: AppConstants.appWidth * 0.9,
                 height: AppConstants.appHeight * 0.06,
