@@ -1,6 +1,7 @@
 import 'package:doodle/common/utils/constants.dart';
 import 'package:doodle/common/widgets/appstyle.dart';
 import 'package:doodle/common/widgets/custome_textfeild.dart';
+import 'package:doodle/common/widgets/expantion.dart';
 import 'package:doodle/common/widgets/height_spacer.dart';
 import 'package:doodle/common/widgets/reusable_text.dart';
 import 'package:doodle/common/widgets/width_spacer.dart';
@@ -164,7 +165,22 @@ class _HomePageState extends ConsumerState<HomePage>
                   ),
                 ]),
               ),
-            )
+            ),
+            const HeightSpacer(height: 20),
+            const ExpansionTiles(
+              text: 'For Tomorrow',
+              text2: "Tomorrow's tasks",
+              children: [],
+            ),
+            const HeightSpacer(height: 20),
+            ExpansionTiles(
+              text: DateTime.now()
+                  .add(Duration(days: 2))
+                  .toString()
+                  .substring(5, 10),
+              text2: "Tasks for Day after Tomorrow  ",
+              children: [],
+            ),
           ]),
         )));
   }

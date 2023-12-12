@@ -2,8 +2,16 @@ import 'package:doodle/common/utils/constants.dart';
 import 'package:doodle/common/widgets/titles.dart';
 import 'package:flutter/material.dart';
 
-class Expantion extends StatelessWidget {
-  const Expantion({super.key});
+class ExpansionTiles extends StatelessWidget {
+  const ExpansionTiles(
+      {super.key,
+      required this.text,
+      required this.text2,
+      required this.children});
+
+  final String text;
+  final String text2;
+  final List<Widget> children;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +25,12 @@ class Expantion extends StatelessWidget {
             dividerColor: Colors.transparent,
           ),
           child: ExpansionTile(
-            title: BottomTitles(),
+            title: BottomTitles(
+              text: text,
+              text2: text2,
+            ),
+            tilePadding: EdgeInsets.zero,
+            children: children,
           )),
     );
   }
