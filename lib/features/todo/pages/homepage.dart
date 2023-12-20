@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:doodle/common/utils/constants.dart';
 import 'package:doodle/common/widgets/appstyle.dart';
 import 'package:doodle/common/widgets/custome_textfeild.dart';
@@ -5,6 +7,8 @@ import 'package:doodle/common/widgets/expantion.dart';
 import 'package:doodle/common/widgets/height_spacer.dart';
 import 'package:doodle/common/widgets/reusable_text.dart';
 import 'package:doodle/common/widgets/width_spacer.dart';
+import 'package:doodle/features/todo/controllers/xpantion_controllers.dart';
+import 'package:doodle/features/todo/widgets/todo_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
@@ -156,8 +160,23 @@ class _HomePageState extends ConsumerState<HomePage>
                     BorderRadius.all(Radius.circular(AppConstants.appRadius)),
                 child: TabBarView(controller: _tabController, children: [
                   Container(
-                    color: AppConstants.appGrayLight,
+                    color: AppConstants.appBkLight,
                     height: AppConstants.appHeight * 0.3,
+                    child: ListView(
+                      children: [
+                        TodoTile(
+                          title: 'Code',
+                          discription: 'Code login page',
+                          start: '10:00',
+                          end: '11:00',
+                          // color: AppConstants.appRed,
+                          Switcher: Switch(
+                            value: true,
+                            onChanged: (value) {},
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                   Container(
                     color: AppConstants.appBkLight,
@@ -167,10 +186,37 @@ class _HomePageState extends ConsumerState<HomePage>
               ),
             ),
             const HeightSpacer(height: 20),
-            const ExpansionTiles(
+            ExpansionTiles(
+              onExpansionChanged: (bool expanded) {
+                ref.read(xpantionStateProvider.notifier).setStart(!expanded);
+              },
               text: 'For Tomorrow',
               text2: "Tomorrow's tasks",
-              children: [],
+              trailing: Padding(
+                padding: EdgeInsets.only(right: 12.w),
+                child: ref.watch(xpantionStateProvider)
+                    ? Icon(
+                        AntDesign.circledown,
+                        color: AppConstants.appLight,
+                      )
+                    : Icon(
+                        AntDesign.clockcircleo,
+                        color: AppConstants.appBluelight,
+                      ),
+              ),
+              children: [
+                TodoTile(
+                  title: 'Code',
+                  discription: 'Code login page',
+                  start: '10:00',
+                  end: '11:00',
+                  // color: AppConstants.appRed,
+                  Switcher: Switch(
+                    value: true,
+                    onChanged: (value) {},
+                  ),
+                )
+              ],
             ),
             const HeightSpacer(height: 20),
             ExpansionTiles(
@@ -179,7 +225,34 @@ class _HomePageState extends ConsumerState<HomePage>
                   .toString()
                   .substring(5, 10),
               text2: "Tasks for Day after Tomorrow  ",
-              children: [],
+              onExpansionChanged: (bool expanded) {
+                ref.read(xpantionState0Provider.notifier).setStart(!expanded);
+              },
+              trailing: Padding(
+                padding: EdgeInsets.only(right: 12.w),
+                child: ref.watch(xpantionState0Provider)
+                    ? Icon(
+                        AntDesign.circledown,
+                        color: AppConstants.appLight,
+                      )
+                    : Icon(
+                        AntDesign.clockcircleo,
+                        color: AppConstants.appBluelight,
+                      ),
+              ),
+              children: [
+                TodoTile(
+                  title: 'Code',
+                  discription: 'Code login page',
+                  start: '10:00',
+                  end: '11:00',
+                  // color: AppConstants.appRed,
+                  Switcher: Switch(
+                    value: true,
+                    onChanged: (value) {},
+                  ),
+                )
+              ],
             ),
           ]),
         )));

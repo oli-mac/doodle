@@ -7,11 +7,15 @@ class ExpansionTiles extends StatelessWidget {
       {super.key,
       required this.text,
       required this.text2,
-      required this.children});
+      this.onExpansionChanged,
+      required this.children,
+      this.trailing});
 
   final String text;
   final String text2;
   final List<Widget> children;
+  final Function(bool)? onExpansionChanged;
+  final Widget? trailing;
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +35,8 @@ class ExpansionTiles extends StatelessWidget {
             ),
             tilePadding: EdgeInsets.zero,
             children: children,
+            onExpansionChanged: onExpansionChanged,
+            trailing: trailing,
           )),
     );
   }

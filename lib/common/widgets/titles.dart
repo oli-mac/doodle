@@ -20,7 +20,7 @@ class BottomTitles extends StatelessWidget {
     return SizedBox(
         width: AppConstants.appWidth,
         child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 30.w),
+            padding: EdgeInsets.symmetric(horizontal: 10.w),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -46,7 +46,8 @@ class BottomTitles extends StatelessWidget {
                   width: 20,
                 ),
                 Padding(
-                  padding: EdgeInsets.all(8),
+                  padding:
+                      EdgeInsets.only(left: 0, right: 8, top: 8, bottom: 8),
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
