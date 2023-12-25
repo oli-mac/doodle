@@ -82,25 +82,56 @@ class DbHelper {
 
     return db.query('todo', where: 'id = ?', whereArgs: [id], limit: 1);
   }
+//! do not think we need this
+  // static Future<int> updateItems(TaskModel task) async {
+  //   final db = await DbHelper.db();
 
-  static Future<int> updateItems(TaskModel task) async {
+  //   final id = await db
+  //       .update('todo', task.toJson(), where: 'id = ?', whereArgs: [task.id]);
+
+  //   return id;
+  // }
+
+  static Future<int> updateItem(
+      int id,
+      String title,
+      String description,
+      String date,
+      String startTime,
+      String endTime,
+      int reminder,
+      int isComplted) async {
     final db = await DbHelper.db();
 
-    final id = await db
-        .update('todo', task.toJson(), where: 'id = ?', whereArgs: [task.id]);
+    final data = {
+      'id': id,
+      'title': title,
+      'description': description,
+      'date': date,
+      'startTime': startTime,
+      'endTime': endTime,
+      'reminder': reminder,
+      'isCompleted': isComplted
+    };
 
-    return id;
-  }
-
-  static Future<int> deleteItems(int id) async {
-    final db = await DbHelper.db();
-
-    final count = await db.delete('todo', where: 'id = ?', whereArgs: [id]);
+    final count =
+        await db.update('todo', data, where: 'id = ?', whereArgs: [id]);
 
     return count;
   }
 
-  //!to do when we start profile edit
+  static Future<int> deleteItem(int id) async {
+    final db = await DbHelper.db();
+    try {
+      final count = await db.delete('todo', where: 'id = ?', whereArgs: [id]);
+      return count;
+    } catch (e) {
+      debugPrint("unable to delete $e");
+      return 0;
+    }
+  }
+
+  //!*to do when we start profile edit
   // static Future<int> updateUsers(int isVerified) async {
   //   final db = await DbHelper.db();
 
