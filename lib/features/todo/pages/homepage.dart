@@ -8,6 +8,7 @@ import 'package:doodle/common/widgets/height_spacer.dart';
 import 'package:doodle/common/widgets/reusable_text.dart';
 import 'package:doodle/common/widgets/width_spacer.dart';
 import 'package:doodle/features/todo/controllers/xpantion_controllers.dart';
+import 'package:doodle/features/todo/pages/add.dart';
 import 'package:doodle/features/todo/widgets/todo_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -55,7 +56,12 @@ class _HomePageState extends ConsumerState<HomePage>
                                     color: AppConstants.appLight,
                                     borderRadius: BorderRadius.circular(9)),
                                 child: GestureDetector(
-                                  onTap: () {},
+                                  onTap: () {
+                                    Navigator.pushReplacement(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: ((context) => AddTodo())));
+                                  },
                                   child: const Icon(
                                     Icons.add,
                                     color: AppConstants.appDark,
